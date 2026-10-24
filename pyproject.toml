@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "neveshtar"
+dynamic = ["version"]
+description = "Offline Persian academic-register aid for theses: spoken-to-written rewrites with a reason and confidence per change, thesis style checks, section scaffolds, Word tracked changes. A rewriting aid you review, not an AI author."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Mohammadreza Zare", email = "mrzroot@users.noreply.github.com" }]
+keywords = ["persian", "farsi", "thesis", "academic-writing", "formal", "register", "docx", "tracked-changes", "nlp", "iran"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Environment :: Console",
+  "Intended Audience :: Education",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Natural Language :: Persian",
+  "Topic :: Text Processing :: Linguistic",
+]
+dependencies = []
+
+[project.optional-dependencies]
+test = ["pytest>=7", "python-docx>=1.0"]
+
+[project.urls]
+Homepage = "https://mrzroot.github.io/neveshtar/"
+Source = "https://github.com/mrzroot/neveshtar"
+Issues = "https://github.com/mrzroot/neveshtar/issues"
+
+[project.scripts]
+neveshtar = "neveshtar.cli:main"
+
+[tool.setuptools.dynamic]
+version = { attr = "neveshtar.__version__" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

@@ -1,0 +1,136 @@
+neveshtar 0.1.0 · chapter.docx · 11 paragraphs · mode safe
+
+¶2
+  · N101  ⁧خب،⁩  →  (drop it)   [low · suggestion only]
+       why: A spoken form of an ordinary word; thesis prose uses the written form. A spoken filler at the start of a sentence.
+  ! N101  ⁧توی⁩  →  ⁧در⁩   [medium · suggestion only]
+  ! S101  ⁧من⁩  → ⁧نگارنده⁩
+       why: First-person singular. Many universities ask for «نگارنده» / «پژوهشگر» or an impersonal passive; check your faculty's guide.
+  ✗ N102  ⁧می‌خوام⁩  →  ⁧می‌خواهم⁩   [high · applied by this mode]
+       why: Spoken conjugation (-ه / -ن / -ام endings, reduced stems). Written Persian keeps the full ending: «می‌خواهد», «می‌کنند».
+  ✗ N102  ⁧داره⁩  →  ⁧دارد⁩   [high · applied by this mode]
+  ✗ N101  ⁧الان⁩  →  ⁧اکنون⁩   [high · applied by this mode]
+  ✗ N101  ⁧خیلی⁩  →  ⁧بسیار⁩   [high · applied by this mode]
+  ✗ N102  ⁧می‌خوابن⁩  →  ⁧می‌خوابند⁩   [high · applied by this mode]
+  ✗ N105  ⁧اینجوری⁩  →  ⁧این‌گونه⁩   [high · applied by this mode]
+       why: A spoken phrase or connective; written argument uses a more explicit connective.
+  ✗ N102  ⁧نمی‌تونن⁩  →  ⁧نمی‌توانند⁩   [high · applied by this mode]
+¶3
+  ! S101  ⁧به نظرم⁩  → ⁧به نظر می‌رسد⁩
+  ✗ N101  ⁧خیلی⁩  →  ⁧بسیار⁩   [high · applied by this mode]
+  ✗ N103  ⁧مهمه⁩  →  ⁧مهم است⁩   [high · applied by this mode]
+       why: The copula is written as a separate word «است» (the spoken -ه / -ست is a contraction).
+  ! N101  ⁧بخاطر⁩  →  ⁧به دلیل⁩   [medium · suggestion only]
+  ✗ N102  ⁧میاد⁩  →  ⁧می‌آید⁩   [high · applied by this mode]
+  ! S301  ⁧قطعاً⁩  → ⁧به نظر می‌رسد / احتمالاً⁩
+       why: Booster: it claims more certainty than a thesis can usually show. Say what the evidence supports, or hedge.
+  ✗ N102  ⁧می‌دونن⁩  →  ⁧می‌دانند⁩   [high · applied by this mode]
+  ✗ N103  ⁧لازمه⁩  →  ⁧لازم است⁩   [high · applied by this mode]
+  · N105  ⁧ولی⁩  →  ⁧اما⁩   [low · suggestion only]
+  ! S401  ⁧بسیاری از⁩  → ⁧عدد، درصد یا منبع⁩
+       why: Vague quantifier with no number or citation in the sentence. Give the count, the share, or the source.
+  · N104  ⁧بهش⁩  →  ⁧به آن⁩   [low · suggestion only]
+       alternatives: ⁧به آن⁩ / ⁧به او⁩
+       why: Spoken object marker or clitic pronoun («رو», «ازش», «اینو»); the written forms are «را», «از آن» …
+  ✗ N102  ⁧نمی‌کنن⁩  →  ⁧نمی‌کنند⁩   [high · applied by this mode]
+  ! S901  ⁧!⁩  → ⁧حذف یا جمله‌ی خبری⁩
+       why: Exclamation mark, emoji or repeated punctuation is out of register for a thesis.
+¶4
+  ! S801  ⁧طبق تحقیقات⁩  → ⁧ارجاع درون‌متنی: (نام، سال)⁩
+       why: Claim cue with no citation in the sentence («studies show …»). Name the source.
+  ✗ N102  ⁧می‌شه⁩  →  ⁧می‌شود⁩   [high · applied by this mode]
+  ! S801  ⁧پژوهش‌ها نشان داده‌اند⁩  → ⁧ارجاع درون‌متنی: (نام، سال)⁩
+  ✗ N102  ⁧نداره⁩  →  ⁧ندارد⁩   [high · applied by this mode]
+¶5
+  ✗ N101  ⁧خیلی⁩  →  ⁧بسیار⁩   [high · applied by this mode]
+  ✗ N102  ⁧می‌خوابن⁩  →  ⁧می‌خوابند⁩   [high · applied by this mode]
+¶7
+  ✗ N101  ⁧یه⁩  →  ⁧یک⁩   [high · applied by this mode]
+  ! S101  ⁧کردم⁩  → ⁧ساخت مجهول («بررسی شد») یا «نگارنده … کرد»⁩
+  ! S101  ⁧انتخاب کردم⁩  → ⁧ساخت مجهول («بررسی شد») یا «نگارنده … کرد»⁩
+  · N104  ⁧ازشون⁩  →  ⁧از آن‌ها⁩   [low · suggestion only]
+  ✗ N104  ⁧رو⁩  →  ⁧را⁩   [high · applied by this mode]
+  ! N101  ⁧بعدش⁩  →  ⁧سپس⁩   [medium · suggestion only]
+  ✗ N104  ⁧رو⁩  →  ⁧را⁩   [high · applied by this mode]
+  ! S101  ⁧کردم⁩  → ⁧ساخت مجهول («بررسی شد») یا «نگارنده … کرد»⁩
+¶8
+  · S501  ⁧این⁩  → ⁧«این» × 4⁩
+       why: Three sentences of this paragraph open with the same word.
+  ✗ N102  ⁧بشه⁩  →  ⁧بشود⁩   [high · applied by this mode]
+¶10
+  ! S701  ⁧لذا⁩  → ⁧3 گفتاری + 5 رسمی⁩
+       why: Mixed register: spoken forms and formal connectives in one paragraph.
+  · N201  ⁧می‌باشد⁩  →  ⁧است⁩   [low · suggestion only]
+       why: Bureaucratic filler («می‌باشد», «گردید», «جهت») is longer than plain written Persian and is not more academic. Optional.
+  ✗ N101  ⁧خیلی⁩  →  ⁧بسیار⁩   [high · applied by this mode]
+  ✗ N103  ⁧مهمه⁩  →  ⁧مهم است⁩   [high · applied by this mode]
+  · N201  ⁧جهت⁩  →  ⁧برای⁩   [low · suggestion only]
+  ✗ N103  ⁧مناسبه⁩  →  ⁧مناسب است⁩   [high · applied by this mode]
+¶11
+  ! S601  ⁧در این پژوهش که با هدف بررسی ارتباط میان⁩  → ⁧69 واژه (حد: 45)⁩
+       why: Very long sentence; the reader may lose the subject. Consider splitting at a connective.
+  · N201  ⁧گردید⁩  →  ⁧شد⁩   [low · suggestion only]
+  · N201  ⁧گردید⁩  →  ⁧شد⁩   [low · suggestion only]
+
+24 error(s) (spoken forms with one written form), 15 warning(s), 9 note(s); 24 rewrite(s) would be applied in mode safe (neveshtar fix).
+
+======================================================================
+$ neveshtar fix chapter.docx
+
+neveshtar 0.1.0 · chapter.docx · 11 paragraphs · mode safe
+
+¶2
+  · N101  ⁧خب،⁩  →  (drop it)   [low · suggestion only]
+       why: A spoken form of an ordinary word; thesis prose uses the written form. A spoken filler at the start of a sentence.
+  ! N101  ⁧توی⁩  →  ⁧در⁩   [medium · suggestion only]
+  ✗ N102  ⁧می‌خوام⁩  →  ⁧می‌خواهم⁩   [high · applied by this mode]
+       why: Spoken conjugation (-ه / -ن / -ام endings, reduced stems). Written Persian keeps the full ending: «می‌خواهد», «می‌کنند».
+  ✗ N102  ⁧داره⁩  →  ⁧دارد⁩   [high · applied by this mode]
+  ✗ N101  ⁧الان⁩  →  ⁧اکنون⁩   [high · applied by this mode]
+  ✗ N101  ⁧خیلی⁩  →  ⁧بسیار⁩   [high · applied by this mode]
+  ✗ N102  ⁧می‌خوابن⁩  →  ⁧می‌خوابند⁩   [high · applied by this mode]
+  ✗ N105  ⁧اینجوری⁩  →  ⁧این‌گونه⁩   [high · applied by this mode]
+       why: A spoken phrase or connective; written argument uses a more explicit connective.
+  ✗ N102  ⁧نمی‌تونن⁩  →  ⁧نمی‌توانند⁩   [high · applied by this mode]
+¶3
+  ✗ N101  ⁧خیلی⁩  →  ⁧بسیار⁩   [high · applied by this mode]
+  ✗ N103  ⁧مهمه⁩  →  ⁧مهم است⁩   [high · applied by this mode]
+       why: The copula is written as a separate word «است» (the spoken -ه / -ست is a contraction).
+  ! N101  ⁧بخاطر⁩  →  ⁧به دلیل⁩   [medium · suggestion only]
+  ✗ N102  ⁧میاد⁩  →  ⁧می‌آید⁩   [high · applied by this mode]
+  ✗ N102  ⁧می‌دونن⁩  →  ⁧می‌دانند⁩   [high · applied by this mode]
+  ✗ N103  ⁧لازمه⁩  →  ⁧لازم است⁩   [high · applied by this mode]
+  · N105  ⁧ولی⁩  →  ⁧اما⁩   [low · suggestion only]
+  · N104  ⁧بهش⁩  →  ⁧به آن⁩   [low · suggestion only]
+       alternatives: ⁧به آن⁩ / ⁧به او⁩
+       why: Spoken object marker or clitic pronoun («رو», «ازش», «اینو»); the written forms are «را», «از آن» …
+  ✗ N102  ⁧نمی‌کنن⁩  →  ⁧نمی‌کنند⁩   [high · applied by this mode]
+¶4
+  ✗ N102  ⁧می‌شه⁩  →  ⁧می‌شود⁩   [high · applied by this mode]
+  ✗ N102  ⁧نداره⁩  →  ⁧ندارد⁩   [high · applied by this mode]
+¶5
+  ✗ N101  ⁧خیلی⁩  →  ⁧بسیار⁩   [high · applied by this mode]
+  ✗ N102  ⁧می‌خوابن⁩  →  ⁧می‌خوابند⁩   [high · applied by this mode]
+¶7
+  ✗ N101  ⁧یه⁩  →  ⁧یک⁩   [high · applied by this mode]
+  · N104  ⁧ازشون⁩  →  ⁧از آن‌ها⁩   [low · suggestion only]
+  ✗ N104  ⁧رو⁩  →  ⁧را⁩   [high · applied by this mode]
+  ! N101  ⁧بعدش⁩  →  ⁧سپس⁩   [medium · suggestion only]
+  ✗ N104  ⁧رو⁩  →  ⁧را⁩   [high · applied by this mode]
+¶8
+  ✗ N102  ⁧بشه⁩  →  ⁧بشود⁩   [high · applied by this mode]
+¶10
+  · N201  ⁧می‌باشد⁩  →  ⁧است⁩   [low · suggestion only]
+       why: Bureaucratic filler («می‌باشد», «گردید», «جهت») is longer than plain written Persian and is not more academic. Optional.
+  ✗ N101  ⁧خیلی⁩  →  ⁧بسیار⁩   [high · applied by this mode]
+  ✗ N103  ⁧مهمه⁩  →  ⁧مهم است⁩   [high · applied by this mode]
+  · N201  ⁧جهت⁩  →  ⁧برای⁩   [low · suggestion only]
+  ✗ N103  ⁧مناسبه⁩  →  ⁧مناسب است⁩   [high · applied by this mode]
+¶11
+  · N201  ⁧گردید⁩  →  ⁧شد⁩   [low · suggestion only]
+  · N201  ⁧گردید⁩  →  ⁧شد⁩   [low · suggestion only]
+
+24 error(s) (spoken forms with one written form), 3 warning(s), 8 note(s); 24 rewrite(s) would be applied in mode safe (neveshtar fix).
+
+wrote /tmp/tmptw5uxwa5/chapter.neveshtar.docx: 24 rewrite(s) applied (tracked changes: accept / reject each one in Word (Review → Tracking)). The input file was not modified.
+re-check of the copy: 0 high-confidence spoken form(s) left.
