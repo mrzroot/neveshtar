@@ -26,11 +26,10 @@ def read_text(path: str) -> Tuple[List[Para], List[str]]:
         if fence or not ln.strip():
             continue
         kind = "p"
-        if md:
-            if re.match(r"^( {4}|\t)\S", ln):
-                kind = "code"
-            elif re.match(r"^\s{0,3}#{1,6}\s", ln):
-                kind = "heading"
+        if md and re.match(r"^( {4}|\t)\S", ln):
+            kind = "code"
+        elif re.match(r"^\s{0,3}#{1,6}\s", ln):
+            kind = "heading"
         out.append(Para(len(out) + 1, ln, kind, f"line {i}"))
     return out, lines
 

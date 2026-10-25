@@ -28,11 +28,19 @@ class Finding:
     conf: str = ""         # rewrite: high | medium | low
     applied: bool = False
     alts: Optional[List[str]] = None
+    ask: str = ""          # natural: the question for the author (EN)
+    ask_fa: str = ""
 
     def to_dict(self) -> dict:
         d = {"code": self.code, "severity": self.severity, "paragraph": self.para, "start": self.start, "end": self.end,
              "text": self.text, "kind": self.kind, "message": self.message, "message_fa": self.message_fa,
              "suggestion": self.suggestion}
+        if self.kind == "natural":
+            d["confidence"] = self.conf
+            d["applied"] = self.applied
+            d["alternatives"] = self.alts or []
+            d["question"] = self.ask
+            d["question_fa"] = self.ask_fa
         if self.kind == "rewrite":
             d["confidence"] = self.conf
             d["applied"] = self.applied

@@ -92,7 +92,7 @@ def test_no_network_no_dependencies():
     import ast, pathlib
     base = pathlib.Path(engine.__file__).parent
     allowed = {"__future__", "dataclasses", "typing", "re", "os", "sys", "json", "html", "zipfile", "argparse", "tempfile", "collections",
-               "itertools", "unicodedata", "datetime", "functools", "xml", "io", "shutil", "textwrap", "sample", "docxbuild", "random", "struct", "zlib", "copy"}
+               "itertools", "unicodedata", "datetime", "functools", "xml", "io", "shutil", "textwrap", "sample", "docxbuild", "random", "struct", "zlib", "copy", "statistics"}
     for f in base.glob("*.py"):
         for n in ast.walk(ast.parse(f.read_text(encoding="utf-8"))):
             mods = [a.name.split(".")[0] for a in n.names] if isinstance(n, ast.Import) else ([n.module.split(".")[0]] if isinstance(n, ast.ImportFrom) and n.module and n.level == 0 else [])

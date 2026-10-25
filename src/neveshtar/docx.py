@@ -209,7 +209,7 @@ def edit_paragraph(pxml: str, changes: Sequence[Change], tracked: bool, author: 
     return "".join(res), good, skipped
 
 
-def write(src: str, dst: str, plan: Dict[int, List[Change]], tracked: bool = True, author: str = "neveshtar", date: Optional[str] = None) -> Tuple[List[Change], List[Tuple[Change, str]]]:
+def write(src: str, dst: str, plan: Dict[int, List[Change]], tracked: bool = True, author: str = "neveshtar", date: Optional[str] = None, comments: Optional[Dict[int, List[str]]] = None) -> Tuple[List[Change], List[Tuple[Change, str]]]:
     """Write ``dst`` = ``src`` with ``plan`` (paragraph number as returned by :func:`read` → changes) applied.
     Returns (applied, skipped-with-reason)."""
     date = _wdate(date)
@@ -228,11 +228,29 @@ def write(src: str, dst: str, plan: Dict[int, List[Change]], tracked: bool = Tru
     applied: List[Change] = []
     skipped: List[Tuple[Change, str]] = []
     out, last = [], 0
-    edits = sorted(((number[p], p) for p in plan if p in number))
+    comments = comments or {}
+    cid = [1000]
+    cxml: List[str] = []
+    edits = sorted(((number[p], p) for p in set(plan) | set(comments) if p in number))
     for si, p in edits:
         a, b = spans[si]
         out.append(xml[last:a])
-        new, ok, sk = edit_paragraph(xml[a:b], plan[p], tracked, author, date, ids, omaps[p])
+        if p in plan:
+            new, ok, sk = edit_paragraph(xml[a:b], plan[p], tracked, author, date, ids, omaps[p])
+        else:
+            new, ok, sk = xml[a:b], [], []
+        if p in comments:
+            starts, ends = "", ""
+            for txt in comments[p]:
+                cid[0] += 1
+                starts += f'<w:commentRangeStart w:id="{cid[0]}"/>'
+                ends += f'<w:commentRangeEnd w:id="{cid[0]}"/><w:r><w:commentReference w:id="{cid[0]}"/></w:r>'
+                cxml.append(f'<w:comment w:id="{cid[0]}" w:author="{escape(author)}" w:date="{date}" w:initials="N"><w:p><w:r><w:t xml:space="preserve">{escape(txt)}</w:t></w:r></w:p></w:comment>')
+            m0 = re.search(r"</w:pPr>", new)
+            m1 = re.match(r"<w:p(?=[\s>/])[^>]*>", new)
+            ins_at = m0.end() if m0 else (m1.end() if m1 else 0)
+            new = new[:ins_at] + starts + new[ins_at:]
+            new = new[:-len("</w:p>")] + ends + "</w:p>" if new.endswith("</w:p>") else new
         out.append(new)
         applied += ok
         skipped += sk
@@ -240,9 +258,21 @@ def write(src: str, dst: str, plan: Dict[int, List[Change]], tracked: bool = Tru
     out.append(xml[last:])
     newxml = "".join(out)
     with zipfile.ZipFile(src) as zin, zipfile.ZipFile(dst, "w", zipfile.ZIP_DEFLATED) as zout:
+        names = set(zin.namelist())
         for item in zin.infolist():
             data = zin.read(item.filename)
             if item.filename == "word/document.xml":
                 data = newxml.encode("utf-8")
+            elif cxml and item.filename == "word/comments.xml":
+                t = data.decode("utf-8")
+                data = t.replace("</w:comments>", "".join(cxml) + "</w:comments>").encode("utf-8")
+            elif cxml and item.filename == "[Content_Types].xml" and "word/comments.xml" not in names:
+                t = data.decode("utf-8")
+                data = t.replace("</Types>", '<Override PartName="/word/comments.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.comments+xml"/></Types>').encode("utf-8")
+            elif cxml and item.filename == "word/_rels/document.xml.rels" and "word/comments.xml" not in names:
+                t = data.decode("utf-8")
+                data = t.replace("</Relationships>", '<Relationship Id="rIdNvComments" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/comments" Target="comments.xml"/></Relationships>').encode("utf-8")
             zout.writestr(item, data)
+        if cxml and "word/comments.xml" not in names:
+            zout.writestr("word/comments.xml", '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:comments xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">' + "".join(cxml) + "</w:comments>")
     return applied, skipped

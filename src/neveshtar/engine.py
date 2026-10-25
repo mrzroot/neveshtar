@@ -56,18 +56,25 @@ class Change:
     def severity(self) -> str:
         return {"high": "error", "medium": "warn", "low": "info"}[self.conf]
 
+    @staticmethod
+    def _info(cat: str):
+        if cat in CATS:
+            return CATS[cat]
+        from .natural import NCATS
+        return NCATS[cat]
+
     @property
     def why_en(self) -> str:
-        return CATS[self.cat][2] + ((" " + self.note) if self.note else "")
+        return self._info(self.cat)[2] + ((" " + self.note) if self.note else "")
 
     @property
     def why_fa(self) -> str:
-        return CATS[self.cat][3]
+        return self._info(self.cat)[3]
 
     def to_dict(self) -> dict:
         return {"start": self.start, "end": self.end, "original": self.original, "replacement": self.replacement,
                 "alternatives": list(self.alts), "confidence": self.conf, "code": self.cat,
-                "category": CATS[self.cat][0], "why": self.why_en, "why_fa": self.why_fa}
+                "category": self._info(self.cat)[0], "why": self.why_en, "why_fa": self.why_fa}
 
 
 def find_changes(text: str, protect: bool = True) -> List[Change]:
