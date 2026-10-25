@@ -17,9 +17,9 @@
 
 ## 🎯 Why
 
-A first draft is typed the way we speak (`داره`, `میشه`, `بخاطر`), and a machine-assisted draft often has the opposite problem: correct but stiff. «در دنیای امروز، … نقش بسزایی ایفا می‌کند. همچنین … علاوه بر این …» A reader sees the template, not the thesis.
+A first draft is typed the way we speak (⁧`داره`⁩, ⁧`میشه`⁩, ⁧`بخاطر`⁩), and a machine-assisted draft often has the opposite problem: correct but stiff. ⁧«در دنیای امروز، … نقش بسزایی ایفا می‌کند. همچنین … علاوه بر این …»⁩ A reader sees the template, not the thesis.
 
-`neveshtar` keeps two things visible. **Register:** some spoken forms have exactly one written form («دارد», «می‌شود») and are safe to fix mechanically; others depend on context and stay *suggestions*. **Naturalness:** a filler opener can be trimmed safely, but whether «نقش مهمی دارد» means anything is something only you can answer, so the tool **asks a question instead of inventing a claim**. Every finding has a location, a reason in two languages, a confidence tier and, where it can, a rewrite. `safe` mode (the default) applies only the unambiguous ones, and the result is a Word tracked change you accept or reject one by one.
+`neveshtar` keeps two things visible. **Register:** some spoken forms have exactly one written form (⁧«دارد»⁩, ⁧«می‌شود»⁩) and are safe to fix mechanically; others depend on context and stay *suggestions*. **Naturalness:** a filler opener can be trimmed safely, but whether ⁧«نقش مهمی دارد»⁩ means anything is something only you can answer, so the tool **asks a question instead of inventing a claim**. Every finding has a location, a reason in two languages, a confidence tier and, where it can, a rewrite. `safe` mode (the default) applies only the unambiguous ones, and the result is a Word tracked change you accept or reject one by one.
 
 ## 📦 Install
 
@@ -69,7 +69,7 @@ Rhythm and readability (plain numbers, not a score)
 0 error(s), 13 warning(s), 11 note(s); 3 rewrite(s) would be applied in mode safe.
 ```
 
-Library: `from neveshtar import engine; engine.formalize("این مهمه", mode="safe")` → `'این مهم است'`.
+Library: ⁧`from neveshtar import engine; engine.formalize("این مهمه", mode="safe")`⁩ → ⁧`'این مهم است'`⁩.
 
 ## ✍️ Before / after
 
@@ -80,13 +80,13 @@ Real output on an invented two-sentence sample (`neveshtar natural --fix`, with 
 | **Draft** | <div dir="rtl">در دنیای پرشتاب امروز، کتابخانه‌های دانشگاهی نقش بسزایی ایفا می‌کنند. همچنین فناوری‌های نوین نقش مهمی در دسترسی به منابع دارند.</div> |
 | **`--fix` (safe)** | <div dir="rtl">کتابخانه‌های دانشگاهی نقش بسزایی ایفا می‌کنند. همچنین فناوری‌های نوین نقش مهمی در دسترسی به منابع دارند.</div> |
 | **`--fix --mode balanced`** | <div dir="rtl">کتابخانه‌های دانشگاهی نقش دارند. همچنین فناوری‌های نوین نقش مهمی در دسترسی به منابع دارند.</div> |
-| **Still open (as questions)** | which effect, on what, shown by which result? · is «همچنین» adding anything? · add a number, a source or a named case |
+| **Still open (as questions)** | which effect, on what, shown by which result? · is ⁧«همچنین»⁩ adding anything? · add a number, a source or a named case |
 
 The tool never writes the number or the claim: that part is yours. It trims what is safe to trim, suggests a plainer phrase and asks the question a careful reader would ask. Rhythm numbers for this sample: both sentences are 10 words long (variation 0.0), and one of the two sentences opens with a connector.
 
 ## 🧩 Features
 
-| | |
+| Feature | What it does |
 |---|---|
 | 🔁 **Register rewrites** | ~1,300 spoken forms → written, each with reason (EN + FA), tier and alternatives |
 | 🪶 **Naturalness check** *(0.2)* | 11 checks (R-codes): stock openers, stock phrases, empty intensifiers, stacked connectors, uniform rhythm, repeated frames, triplets, vague generalities, English calques, nominalisation, passive pile-ups |
@@ -105,16 +105,16 @@ The tool never writes the number or the claim: that part is yours. It trims what
 
 | code | what it finds | what you get |
 |---|---|---|
-| R101 | stock opener («در دنیای امروز»، «لازم به ذکر است که»، «همان‌طور که می‌دانیم») | trim (`high`, applied in `safe`); softer openers («امروزه»، «در سال‌های اخیر») are a question |
-| R102 | stock phrase («نقش بسزایی ایفا می‌کند»، «گام مهمی»، «حائز اهمیت») | rewrite («نقش دارد») or a question: which effect, on what? |
-| R103 | empty intensifier («بسیار بسیار» is trimmed in `safe`; «بسیار حیاتی», «فوق‌العاده») | trim, or "how much? a number or a comparison?" |
-| R104 | sentence after sentence opening with a connector («همچنین»، «علاوه بر این»، «بنابراین») | a question: name the relation once, or let the order carry it |
+| R101 | stock opener (⁧«در دنیای امروز»⁩، ⁧«لازم به ذکر است که»⁩، ⁧«همان‌طور که می‌دانیم»⁩) | trim (`high`, applied in `safe`); softer openers (⁧«امروزه»⁩، ⁧«در سال‌های اخیر»⁩) are a question |
+| R102 | stock phrase (⁧«نقش بسزایی ایفا می‌کند»⁩، ⁧«گام مهمی»⁩، ⁧«حائز اهمیت»⁩) | rewrite (⁧«نقش دارد»⁩) or a question: which effect, on what? |
+| R103 | empty intensifier (⁧«بسیار بسیار»⁩ is trimmed in `safe`; ⁧«بسیار حیاتی»⁩, ⁧«فوق‌العاده»⁩) | trim, or "how much? a number or a comparison?" |
+| R104 | sentence after sentence opening with a connector (⁧«همچنین»⁩، ⁧«علاوه بر این»⁩، ⁧«بنابراین»⁩) | a question: name the relation once, or let the order carry it |
 | R201 | uniform sentence length across a paragraph | a question (read aloud; vary the length) |
 | R202 | the same opener or sentence frame again and again | a question (rebuild around what differs) |
-| R301 | many «الف، ب و ج» triplets | a question (are all three equal?) |
+| R301 | many ⁧«الف، ب و ج»⁩ triplets | a question (are all three equal?) |
 | R302 | sweeping statement with no number, citation, quotation or named case | "add one of: number, citation, observation, example" |
-| R401 | English calques («بر روی»، «در رابطه با»، «ما می‌توانیم نتیجه بگیریم که») | rewrite, `medium` |
-| R501 | verbal noun + light verb («مورد بررسی قرار گرفت» → «بررسی شد») | rewrite (`medium`), or a question |
+| R401 | English calques (⁧«بر روی»⁩، ⁧«در رابطه با»⁩، ⁧«ما می‌توانیم نتیجه بگیریم که»⁩) | rewrite, `medium` |
+| R501 | verbal noun + light verb (⁧«مورد بررسی قرار گرفت»⁩ → ⁧«بررسی شد»⁩) | rewrite (`medium`), or a question |
 | R601 | several passives in a row | a question (does the actor matter? passive is normal in a methods section) |
 
 <details>
@@ -122,20 +122,20 @@ The tool never writes the number or the claim: that part is yours. It trims what
 
 | code | meaning | applied by |
 |---|---|---|
-| N101 | spoken word (`خیلی`, `الان`, `یه`, `تو`) | `safe` if high |
-| N102 | spoken verb form (`می‌خوام`, `میاد`, `نمی‌تونن`; about 1,000 generated forms) | `safe` if high |
-| N103 | spoken copula (`مهمه` → `مهم است`) | `safe` |
-| N104 | object marker and clitic pronouns (`رو`, `اینو`, `ازش`) | `safe` for `رو`, `اینو`; `بهش`, `ازش` are `low` |
-| N105 | spoken phrase or connective (`اینجوری`, `چون که`, `ولی`) | tier varies |
-| N106-N108 | slang, spoken demonstratives and plurals, spoken nouns (`خونه`, `زبون`) | tier varies |
-| N201 | over-formal filler (`می‌باشد`, `گردید`, `جهت`): optional, never in `safe` / `balanced` | `all` |
-| S101-S103 | first person «من / ما», direct address «شما» | report |
-| S301, S302 | boosters (`قطعاً`) and three or more hedges in one sentence (after Hyland) | report |
+| N101 | spoken word (⁧`خیلی`⁩, ⁧`الان`⁩, ⁧`یه`⁩, ⁧`تو`⁩) | `safe` if high |
+| N102 | spoken verb form (⁧`می‌خوام`⁩, ⁧`میاد`⁩, ⁧`نمی‌تونن`⁩; about 1,000 generated forms) | `safe` if high |
+| N103 | spoken copula (⁧`مهمه`⁩ → ⁧`مهم است`⁩) | `safe` |
+| N104 | object marker and clitic pronouns (⁧`رو`⁩, ⁧`اینو`⁩, ⁧`ازش`⁩) | `safe` for ⁧`رو`⁩, ⁧`اینو`⁩; ⁧`بهش`⁩, ⁧`ازش`⁩ are `low` |
+| N105 | spoken phrase or connective (⁧`اینجوری`⁩, ⁧`چون که`⁩, ⁧`ولی`⁩) | tier varies |
+| N106-N108 | slang, spoken demonstratives and plurals, spoken nouns (⁧`خونه`⁩, ⁧`زبون`⁩) | tier varies |
+| N201 | over-formal filler (⁧`می‌باشد`⁩, ⁧`گردید`⁩, ⁧`جهت`⁩): optional, never in `safe` / `balanced` | `all` |
+| S101-S103 | first person ⁧«من / ما»⁩, direct address ⁧«شما»⁩ | report |
+| S301, S302 | boosters (⁧`قطعاً`⁩) and three or more hedges in one sentence (after Hyland) | report |
 | S401 | vague quantifier with no number or citation | report |
 | S501, S601 | three openers repeated; sentence longer than `--max-words` (45) | report |
-| S701, S902 | spoken and formal connectives mixed; sentence opened by `و` / `پس` / `چون` | report |
-| S801 | claim cue (`طبق تحقیقات`) with no citation in the sentence | report |
-| S901 | `!`, emoji, `؟؟` | report |
+| S701, S902 | spoken and formal connectives mixed; sentence opened by ⁧`و`⁩ / ⁧`پس`⁩ / ⁧`چون`⁩ | report |
+| S801 | claim cue (⁧`طبق تحقیقات`⁩) with no citation in the sentence | report |
+| S901 | `!`, emoji, ⁧`؟؟`⁩ | report |
 
 </details>
 
