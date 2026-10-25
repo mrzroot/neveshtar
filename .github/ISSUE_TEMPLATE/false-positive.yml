@@ -1,0 +1,23 @@
+name: False positive / wrong rewrite
+description: A finding or rewrite that is wrong for correct Persian thesis prose
+labels: [false-positive]
+body:
+  - type: markdown
+    attributes:
+      value: "Please use an invented or short public sentence. Never paste a real thesis or anyone's private document."
+  - type: input
+    id: version
+    attributes: {label: neveshtar version (`neveshtar --version`)}
+    validations: {required: true}
+  - type: input
+    id: code
+    attributes: {label: Finding code, placeholder: "R102, N104 ..."}
+    validations: {required: true}
+  - type: textarea
+    id: text
+    attributes: {label: The sentence (invented or public)}
+    validations: {required: true}
+  - type: textarea
+    id: expected
+    attributes: {label: What should happen instead, and why}
+    validations: {required: true}

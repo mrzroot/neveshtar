@@ -1,0 +1,87 @@
+neveshtar 0.2.0 · n.txt · 10 paragraphs · mode safe · naturalness
+
+Writing-quality aid: you review every suggestion. It makes no claim about AI detectors and is not built to evade them or to hide who wrote a text; you remain responsible for the text and for your university's rules on AI assistance and disclosure.
+
+line 3
+  ! R101  ⁧در دنیای پرشتاب امروز،⁩  →  (drop it)   [high · applied by this mode]
+       ask: Start with the first sentence that says something specific to this thesis.
+       why: A stock opener that says nothing about your topic; the sentence works without it.
+  ! R102  ⁧نقش بسزایی ایفا می‌کنند⁩  →  ⁧نقش دارند⁩   [medium · rewrite suggested]
+       ask: What exactly does it do: which effect, on what, shown by which result or source?
+       why: A stock phrase that sounds weighty but claims nothing checkable (what effect, on what, how much?). «played a significant role» keeps the claim but drops the empty adjective.
+  · R102  ⁧نقش مهمی در دسترسی به منابع دارند⁩   [low · for you to decide]
+       ask: What exactly does it do: which effect, on what, shown by which result or source?
+  ! R104  ⁧علاوه بر این⁩   [medium · for you to decide]
+       ask: Does each sentence really add, contrast or give a cause? Name that relation once, or let the order of sentences carry it.
+       why: Sentence after sentence opens with a connector, so the links sound mechanical rather than argued. 4 of 5 sentences open with a connector.
+  · R302  ⁧یکی از مهم‌ترین⁩   [low · for you to decide]
+       ask: Add one of: a number, a citation, your own observation or decision, a named example.
+       why: A sweeping statement with no number, source, quotation or named case; the reader cannot check it.
+  · R102  ⁧حائز اهمیت⁩   [low · for you to decide]
+       ask: What exactly does it do: which effect, on what, shown by which result or source?
+line 5
+  ! R101  ⁧لازم به ذکر است که⁩  →  (drop it)   [high · applied by this mode]
+       ask: Start with the first sentence that says something specific to this thesis.
+  · R202  ⁧این امر⁩   [low · for you to decide]
+       ask: Rebuild the later sentences around what is different in each: the subject, the data, your decision.
+       why: The same sentence frame comes back again and again; the reader sees the template, not the content. «این امر» opens 3 sentences within 8.
+line 7
+  · R501  ⁧ارزیابی، تحلیل و بهبود⁩   [low · for you to decide]
+       ask: Which of these nouns can become the verb of the sentence?
+       why: A verbal noun plus a light verb («مورد بررسی قرار گرفت») where one plain verb («بررسی شد») would do. 3 verbal nouns in one sentence.
+  · R301  ⁧دقت، سرعت و رضایت از شاخص‌های⁩   [low · for you to decide]
+       ask: Are all three equally important? Keep the ones you can support and say which matters most.
+       why: Lists of exactly three items («الف، ب و ج») in many places read as a formula rather than a finding. 4 three-item lists in one paragraph.
+line 11
+  · R601  ⁧شد⁩   [low · for you to decide]
+       ask: If the actor matters (you, a cited study, an instrument), name it; if not, keep the passive.
+       why: Several passives in a row hide who did what. Passive is normal in a methods section; check the actor matters here. 4 passive sentences in a row.
+line 13
+  ! R401  ⁧بر روی⁩  →  ⁧روی⁩   [medium · rewrite suggested]
+       ask: Say it the way you would in a Persian paper of your field.
+       why: A phrase that follows English word order or idiom rather than Persian usage.
+  ! R501  ⁧مورد استفاده قرار گرفت⁩  →  ⁧استفاده شد⁩   [medium · rewrite suggested]
+       ask: Which of these nouns can become the verb of the sentence?
+  ! R401  ⁧در رابطه با⁩  →  ⁧درباره‌ی⁩   [medium · rewrite suggested]
+       ask: Say it the way you would in a Persian paper of your field.
+  ! R501  ⁧مورد بررسی قرار گرفت⁩  →  ⁧بررسی شد⁩   [medium · rewrite suggested]
+       ask: Which of these nouns can become the verb of the sentence?
+  ! R401  ⁧ما می‌توانیم نتیجه بگیریم که⁩  →  ⁧می‌توان نتیجه گرفت که⁩   [medium · rewrite suggested]
+       ask: Say it the way you would in a Persian paper of your field.
+  ! R103  ⁧بسیار بسیار⁩  →  ⁧بسیار⁩   [high · applied by this mode]
+       why: An intensifier adds volume, not information; a number or a comparison does the job. Doubled intensifier.
+line 15
+  · R201  ⁧پرسشنامه شامل بیست سؤال درباره⁩   [low · for you to decide]
+       ask: Read it aloud. Where does the idea turn? Let a short sentence carry the key point and one longer sentence hold the detail.
+       why: Sentences are almost the same length, which reads flat; real argument has a long sentence and a short one. 5 sentences of 9–11 words.
+line 17
+  ! R103  ⁧بسیار حیاتی⁩  →  ⁧حیاتی⁩   [medium · rewrite suggested]
+       ask: How much? Give a number or a comparison, or drop the intensifier.
+  · R103  ⁧فوق‌العاده⁩   [low · for you to decide]
+       ask: How much? Give a number or a comparison, or drop the intensifier.
+  ! R103  ⁧بسیار ضروری⁩  →  ⁧ضروری⁩   [medium · rewrite suggested]
+       ask: How much? Give a number or a comparison, or drop the intensifier.
+  ! R103  ⁧خیلی کلیدی⁩  →  ⁧کلیدی⁩   [medium · rewrite suggested]
+       ask: How much? Give a number or a comparison, or drop the intensifier.
+line 19
+  · R302  ⁧در بسیاری از حوزه‌ها⁩   [low · for you to decide]
+       ask: Add one of: a number, a citation, your own observation or decision, a named example.
+  · R102  ⁧گام مهمی⁩   [low · for you to decide]
+       ask: What exactly does it do: which effect, on what, shown by which result or source?
+
+Rhythm and readability (plain numbers, not a score)
+
+  sentences            34
+  words per sentence   mean 7.9 · median 9.0 · min 3 · max 15 · variation 0.39
+  length histogram     ▄█▇▁·····   (0-4, 5-9 … 40+ words)
+  opener diversity     0.65   (1.0 = every sentence opens differently)
+  common openers       این×9, در×3, داده‌ها×2, پرسشنامه×2, همچنین×1
+  connector openers    15% of sentences
+  three-item lists     12% of sentences
+  passive sentences    38% of sentences
+  with a number        3%   with a citation 0%
+  flat paragraphs      line 3 (variation 0.13), line 7 (variation 0.14), line 11 (variation 0.14), line 13 (variation 0.05), line 15 (variation 0.06), line 17 (variation 0.0)
+
+  Descriptive numbers to make patterns visible. They are not a score, say nothing about who wrote the text, and are not a prediction of how any detector would react.
+
+0 error(s) (spoken forms with one written form), 13 warning(s), 11 note(s); 3 rewrite(s) would be applied in mode safe (neveshtar fix).

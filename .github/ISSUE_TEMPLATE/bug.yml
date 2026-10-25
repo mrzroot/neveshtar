@@ -1,0 +1,21 @@
+name: Bug
+description: A crash, a corrupted .docx, or tracked changes that behave wrongly
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: "Do not attach a real thesis. A tiny invented .docx that reproduces it is ideal."
+  - type: input
+    id: version
+    attributes: {label: neveshtar version, placeholder: "0.2.0"}
+    validations: {required: true}
+  - type: input
+    id: env
+    attributes: {label: Python and OS, placeholder: "3.12 · Ubuntu 24.04"}
+  - type: input
+    id: word
+    attributes: {label: If it is about opening the output in Word or LibreOffice, which one and which version}
+  - type: textarea
+    id: steps
+    attributes: {label: Command and what you saw}
+    validations: {required: true}

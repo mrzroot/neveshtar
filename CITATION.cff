@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use neveshtar, please cite it as below."
+title: "neveshtar: an offline, rule-based aid for Persian thesis prose"
+type: software
+version: 0.2.0
+date-released: 2026-10-25
+license: MIT
+repository-code: "https://github.com/mrzroot/neveshtar"
+url: "https://mrzroot.github.io/neveshtar/"
+authors:
+  - family-names: Zare
+    given-names: Mohammadreza
+keywords:
+  - persian
+  - farsi
+  - thesis
+  - writing
+  - docx
+  - tracked-changes
+abstract: "Offline, dependency-free command-line tool that moves spoken Persian forms to written ones as Word tracked changes and flags stiff, template-like phrasing with questions for the author. A writing-quality aid; it makes no claim about AI detectors."

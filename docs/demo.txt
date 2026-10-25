@@ -1,4 +1,4 @@
-neveshtar 0.1.0 · chapter.docx · 11 paragraphs · mode safe
+neveshtar 0.2.0 · chapter.docx · 11 paragraphs · mode safe
 
 ¶2
   · N101  ⁧خب،⁩  →  (drop it)   [low · suggestion only]
@@ -77,7 +77,7 @@ neveshtar 0.1.0 · chapter.docx · 11 paragraphs · mode safe
 ======================================================================
 $ neveshtar fix chapter.docx
 
-neveshtar 0.1.0 · chapter.docx · 11 paragraphs · mode safe
+neveshtar 0.2.0 · chapter.docx · 11 paragraphs · mode safe
 
 ¶2
   · N101  ⁧خب،⁩  →  (drop it)   [low · suggestion only]
@@ -132,5 +132,5 @@ neveshtar 0.1.0 · chapter.docx · 11 paragraphs · mode safe
 
 24 error(s) (spoken forms with one written form), 3 warning(s), 8 note(s); 24 rewrite(s) would be applied in mode safe (neveshtar fix).
 
-wrote /tmp/tmptw5uxwa5/chapter.neveshtar.docx: 24 rewrite(s) applied (tracked changes: accept / reject each one in Word (Review → Tracking)). The input file was not modified.
+wrote chapter.neveshtar.docx: 24 rewrite(s) applied (tracked changes: accept / reject each one in Word (Review → Tracking)). The input file was not modified.
 re-check of the copy: 0 high-confidence spoken form(s) left.

@@ -29,3 +29,33 @@ for `neveshtar` (free on PyPI and npm; the GitHub name is used by unrelated repo
 
 Probably only the packaging of known ideas: Persian thesis register rules + explainable tiers + `safe` default + tracked-changes output + offline and stdlib-only. The rules themselves are small and
 hand-curated; Hazm and cpia know far more words.
+
+---
+
+# Addendum for 0.2.0: the naturalness mode (`neveshtar natural`)
+
+Done 2026-10-25. Same modest wording as above: this is a packaging claim, not a claim that nobody has done it.
+
+## Searches (2026-10-25)
+
+Web searches: `Persian AI text humanizer tool Farsi humanize AI text 2026`; `github Persian AI writing patterns skill remove AI-sounding Farsi text rule-based`. I only read the search-result summaries and pages the search tool returned; I did not install or run any of the tools below, so
+the comparisons describe what their own pages say, not what I measured.
+
+## What already exists
+
+| project | what it says it is | difference |
+|---|---|---|
+| [ali2000hos/persian-writing](https://github.com/ali2000hos/persian-writing) | an agent skill (Markdown instructions for an AI assistant) with 18 documented Persian "AI-tell" patterns with before/after fixes, register detection, orthography rules and a sentence-rhythm report | the closest in the *ideas* (many of the same patterns). It is a skill an AI model follows, not a standalone deterministic program that edits your Word file with tracked changes |
+| [White-Wolf-dv/Natural-Writing-Skills-Claude](https://github.com/White-Wolf-dv/Natural-Writing-Skills-Claude) | Claude skills (including Persian) targeting nine AI-writing patterns from Wikipedia's "Signs of AI writing", with a 12-point self-check; says it declines to help evade detectors for dishonest purposes | prompts for a model, not a rule engine; no `.docx` output |
+| [jurigis/avoid-ai-writing-multilingual](https://github.com/jurigis/avoid-ai-writing-multilingual) | multilingual skills built on documented over-represented patterns; flags and rewrites with severity | prompt-based; I did not see Persian in its description |
+| obper-mcp (persian-writing-mcp, listed on Glama) | an MCP server that builds editing checklists for an agent to run | a checklist generator for a model's edit loop |
+| SupWriter "Persian AI Humanizer", Evernote "Humanize Persian AI Text", Text2Human | online services that rewrite Persian text; SupWriter and Evernote describe it as natural rewriting, Text2Human's page openly markets avoiding AI detection | online paraphrasing with a model: the text is rewritten for you and sent to a service. Text2Human's detector-evasion framing is **the opposite purpose** of this tool |
+
+## What is different here, honestly
+
+- It is **offline, deterministic and dependency-free**: the same input gives the same findings, nothing is sent anywhere, there is no model to be wrong in a new way each run.
+- It does **not rewrite your text for you** beyond a small set of unambiguous trims in `safe` mode. For everything that needs your facts it **asks a question**, because that is what makes thesis prose specific; a tool that fills in a plausible claim would be inventing content.
+- Output is a **Word copy with tracked changes plus comments**, so a supervisor sees what moved.
+- The report is **descriptive** (rhythm numbers, no score) and the tool makes **no claim about AI detectors**. It is not built to evade them and does not hide who wrote the text; the author stays responsible for the text and for the university's rules on AI assistance and disclosure.
+
+What it does **not** do better: the skills above cover more of Persian orthography, RTL layout and genres than this tool; the online services produce fluent rewrites, which this tool does not attempt; and the rules here are a short hand-written list with no accuracy benchmark.

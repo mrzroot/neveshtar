@@ -4,6 +4,22 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [0.2.0] - 2026-10-25
+
+### Added
+- `neveshtar natural FILE`: a **naturalness check** for stiff, template-like Persian prose (R-codes): R101 stock openers, R102 stock phrases, R103 empty intensifiers, R104 stacked connectors, R201 uniform rhythm, R202 repeated sentence frames, R301 three-item lists, R302 vague generalities, R401 English calques, R501 nominalisation, R601 passive pile-ups. Each finding has a location, a reason (English and Persian), a confidence tier and a rewrite or a question for the author.
+- `safe` mode applies only unambiguous `high` trims (a stock opener, a doubled intensifier); everything else stays a suggestion. Options: `--mode`, `--skip`, `--with-register`, `--fix`, `-o`, `--clean`, `--no-comments`, `--json`, `--html`, `--strict`.
+- `neveshtar rhythm FILE`: plain readability and rhythm numbers (sentence length, variation, opener diversity, connector / three-item / passive share). Descriptive only: no score, no verdict.
+- `.docx` output now also writes **Word comments** that hold the open questions (new `word/comments.xml`, or extends an existing one). Not opened in Word; checked by reading the XML back.
+- `neveshtar check --natural`, `neveshtar sample --natural`; JSON output carries a `notice` and `notice_fa`.
+- Every naturalness output (text, JSON, HTML) carries the same notice: a writing-quality aid, no claim about AI detectors, not built to evade them or hide authorship, the author stays responsible for the text and for the university's AI-assistance rules.
+- 55 new tests (99 in total).
+- README (English and Persian) rewritten with a banner, contents, real example output and a codes table; `CITATION.cff`, issue and pull-request templates.
+
+### Changed
+- `.txt` / `.md`: lines starting with `#` are headings in `.txt` as well.
+- `NOVELTY.md` has an addendum for the naturalness mode.
+
 ## [0.1.0] - 2026-10-25
 
 First release.
