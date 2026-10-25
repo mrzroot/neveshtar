@@ -71,7 +71,7 @@ Rhythm and readability (plain numbers, not a score)
 
 Library: ⁧`from neveshtar import engine; engine.formalize("این مهمه", mode="safe")`⁩ → ⁧`'این مهم است'`⁩.
 
-## ✍️ Before / after
+## 🆚 Before / after
 
 Real output on an invented two-sentence sample (`neveshtar natural --fix`, with and without `--mode balanced`):
 
@@ -161,7 +161,7 @@ neveshtar demo                               # synthetic draft, offline
 
 </details>
 
-## ⚙️ How it works
+## 🔧 How it works
 
 1. The text is split into paragraphs (`.docx` body incl. table cells; `.txt`/`.md` lines) and sentences. Quotations (`«…»`, `"…"`), code and URLs are **protected** and never rewritten.
 2. Hand-written patterns and counts run over each paragraph and over the whole text (repeated frames need more than one sentence). Every pattern is a readable regex or a small word list in `natural.py`, `lexicon.py` and `style.py`; there is no model.
