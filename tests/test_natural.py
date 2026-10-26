@@ -360,7 +360,6 @@ def test_docx_input_untouched_and_no_comments_flag(tmp_path):
 
 
 def test_docx_existing_comments_part_is_extended(tmp_path):
-    from neveshtar import docx as dx
     src = tmp_path / "s.docx"
     sample.natural_thesis(str(src))
     # inject an existing comments part

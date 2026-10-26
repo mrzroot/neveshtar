@@ -7,7 +7,7 @@ explainable.  Conventions such as «avoid من» differ between universities and
 from __future__ import annotations
 
 import re
-from typing import Callable, Dict, List, Sequence, Tuple
+from typing import Dict, List, Tuple
 
 from .engine import in_spans, protected_spans
 from .lexicon import LETTER, ZW

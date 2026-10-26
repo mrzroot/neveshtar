@@ -6,11 +6,11 @@ confidence, reason).  ``select`` filters them by mode; ``apply`` builds the new 
 from __future__ import annotations
 
 import re
-from dataclasses import dataclass, field
-from typing import Iterable, List, Optional, Sequence, Tuple
+from dataclasses import dataclass
+from typing import Iterable, List, Sequence, Tuple
 
 from . import lexicon
-from .lexicon import CATS, ZW, normalise_key
+from .lexicon import CATS, normalise_key
 
 MODES = {"safe": ("high",), "balanced": ("high", "medium"), "all": ("high", "medium", "low")}
 from .lexicon import LETTER

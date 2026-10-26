@@ -4,11 +4,10 @@ from __future__ import annotations
 import html
 import json
 from collections import Counter
-from typing import Dict, List, Optional, Sequence
+from typing import Dict, List
 
 from . import __version__
 from .analyse import Result
-from .engine import Change
 from .lexicon import CATS
 from .model import Finding, Para
 from .style import STYLE
@@ -69,7 +68,7 @@ def text(res: Result, name: str, mode: str, tail: str = "", explain: bool = True
             tag = f"{f.conf}" + (" · applied by this mode" if f.applied else " · suggestion only")
             lines.append(f"  {SEV_MARK[f.severity]} {f.code}  {_b(f.text.strip())}  →  {_b(f.suggestion) if f.suggestion else '(drop it)'}   [{tag}]")
             if len(f.alts or []) > 1:
-                lines.append(f"       alternatives: " + " / ".join(_b(a) for a in f.alts))
+                lines.append("       alternatives: " + " / ".join(_b(a) for a in f.alts))
         else:
             adv = f"  → {_b(f.suggestion)}" if f.suggestion else ""
             lines.append(f"  {SEV_MARK[f.severity]} {f.code}  {_b(f.text.strip())}{adv}")

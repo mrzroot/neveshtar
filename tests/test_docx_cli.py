@@ -4,7 +4,7 @@ import zipfile
 
 import pytest
 
-from neveshtar import cli, docx as dx, sample
+from neveshtar import cli, sample
 
 docx_lib = pytest.importorskip("docx")
 
