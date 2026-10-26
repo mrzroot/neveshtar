@@ -1,3 +1,4 @@
+"""pytest setup: make ``src/`` importable without installing the package."""
 import os
 import sys
 

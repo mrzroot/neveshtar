@@ -1,3 +1,4 @@
+"""`neveshtar` on .docx files and the CLI around it: tracked changes (w:ins / w:del), clean mode, exit codes, reports."""
 import json
 import re
 import zipfile

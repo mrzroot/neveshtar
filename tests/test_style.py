@@ -1,3 +1,4 @@
+"""Writing style checks (S-codes): sentence length, repeated words, punctuation habits; each runs on one paragraph."""
 from neveshtar import analyse, model, sample
 
 
