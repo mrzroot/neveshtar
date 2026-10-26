@@ -102,7 +102,7 @@ _QV = [(f"گرفت", "شد"), ("گرفتند", "شدند"), (f"می[{Z} ]?گیر
        (f"گرفته[{Z} ]?اند", f"شده{Z}اند"), (f"گرفته بود", "شده بود"), ("خواهد گرفت", "خواهد شد"), ("خواهند گرفت", "خواهند شد")]
 _QV_RX = "|".join(sorted((v for v, _ in _QV), key=len, reverse=True))
 _MORED = re.compile(B0 + rf"مورد ({_VN}) قرار ({_QV_RX})" + B1)
-_SORAT = re.compile(B0 + rf"({_VN}) صورت ({_QV_RX.replace('گرفت', 'گرفت').replace('می' + '[' + Z + ' ]?گیرد', 'می[' + Z + ' ]?گیرد')})" + B1)
+_SORAT = re.compile(B0 + rf"({_VN}) صورت ({_QV_RX})" + B1)
 
 _CALQUES = [
     ("در پایان روز", "در نهایت", ("در نهایت", "در پایان"), "medium", "«At the end of the day».", "medium"),
