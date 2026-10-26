@@ -1,34 +1,52 @@
+"""The naturalness check (R-codes): stiff openers, intensifiers, connector pile-ups, calques, rhythm.
+
+Findings carry a confidence: "high" ones are rewritten in safe mode, "medium"/"low" only raise a question for the
+author. These tests pin which phrases land in which bucket, and that no output claims to beat AI detectors.
+CLI and .docx behaviour is in test_natural_cli.py.
+"""
 import json
-import re
-import zipfile
+import pathlib
 
 import pytest
 
-from neveshtar import analyse as an, cli, natural, sample, render
+from neveshtar import analyse as an, engine, natural, sample, render
 from neveshtar.model import Para
 
-Z = "\u200c"
+Z = "\u200c"  # ZWNJ, the Persian half-space
 
 
 def P(text, kind="p"):
+    """A one-paragraph document: paragraph 1, of the given kind ("p" body text, "h" heading, "code", ...)."""
     return Para(1, text, kind, "¶1")
 
 
 def codes(text, kind="p"):
+    """The R-codes raised on a single paragraph of *text*."""
     return [f.code for f, _ in natural.check_paragraph(P(text, kind))]
 
 
 def fixes(text):
+    """{code: replacement} for the findings on *text* that come with an automatic rewrite."""
     return {f.code: c.replacement for f, c in natural.check_paragraph(P(text)) if c is not None}
+
+
+def finding_pair(text, code):
+    """The first (finding, change) pair with *code* for *text*; change is None for question-only findings."""
+    return next(x for x in natural.check_paragraph(P(text)) if x[0].code == code)
+
+
+def sample_paragraphs():
+    """The bundled stiff-prose sample as Para objects (comment lines starting with # are skipped)."""
+    lines = (x for x in sample.natural_lines().split("\n") if x and not x.startswith("#"))
+    return [Para(i + 1, line, "p", f"¶{i + 1}") for i, line in enumerate(lines)]
 
 
 # --- R101 openers ---------------------------------------------------------------------------------------------------------
 def test_r101_trim_is_high_confidence_and_applied_in_safe_mode():
     t = "در دنیای امروز، دقت جست‌وجو اهمیت دارد."
     res = an.analyse([P(t)], an.Options(natural=True, rewrites=False, style=False))
-    f = [f for f in res.findings if f.code == "R101"][0]
+    f = next(f for f in res.findings if f.code == "R101")
     assert f.conf == "high" and f.applied
-    from neveshtar import engine
     assert engine.apply(t, res.chosen[1]).strip() == "دقت جست‌وجو اهمیت دارد."
 
 
@@ -43,8 +61,7 @@ def test_r101_not_when_nothing_would_remain():
 
 
 def test_r101_soft_opener_is_question_only():
-    out = natural.check_paragraph(P("امروزه دقت جست‌وجو برای کاربران اهمیت دارد."))
-    f, c = [x for x in out if x[0].code == "R101"][0]
+    f, c = finding_pair("امروزه دقت جست‌وجو برای کاربران اهمیت دارد.", "R101")
     assert f.conf == "low" and c is None and f.ask
 
 
@@ -61,14 +78,12 @@ def test_r102_stock_phrase_asks():
 
 # --- R103 ----------------------------------------------------------------------------------------------------------------
 def test_r103_double_intensifier_high():
-    out = natural.check_paragraph(P("نتیجه بسیار بسیار خوب است."))
-    f, c = [x for x in out if x[0].code == "R103"][0]
+    f, c = finding_pair("نتیجه بسیار بسیار خوب است.", "R103")
     assert f.conf == "high" and c.replacement == "بسیار"
 
 
 def test_r103_strong_adjective_medium_not_safe():
-    out = natural.check_paragraph(P("این گام بسیار حیاتی است."))
-    f, c = [x for x in out if x[0].code == "R103"][0]
+    f, c = finding_pair("این گام بسیار حیاتی است.", "R103")
     assert f.conf == "medium" and c.replacement == "حیاتی"
     res = an.analyse([P("این گام بسیار حیاتی است.")], an.Options(natural=True, rewrites=False, style=False))
     assert not any(f.applied for f in res.findings)
@@ -176,10 +191,8 @@ def test_code_and_heading_paragraphs_skipped():
 
 
 def test_every_natural_finding_has_reason_and_a_question_or_rewrite():
-    text = sample.natural_lines()
-    paras = [Para(i + 1, l, "p", f"¶{i + 1}") for i, l in enumerate(x for x in text.split("\n") if x and not x.startswith("#"))]
     n = 0
-    for p in paras:
+    for p in sample_paragraphs():
         for f, c in natural.check_paragraph(p):
             n += 1
             assert f.message and f.message_fa
@@ -238,8 +251,7 @@ def test_rhythm_empty():
 
 # --- honesty rule in every output ------------------------------------------------------------------------------------------
 def _res():
-    paras = [Para(i + 1, l, "p", f"¶{i + 1}") for i, l in enumerate(x for x in sample.natural_lines().split("\n") if x and not x.startswith("#"))]
-    return an.analyse(paras, an.Options(natural=True))
+    return an.analyse(sample_paragraphs(), an.Options(natural=True))
 
 
 def test_notice_in_text_json_html():
@@ -251,126 +263,8 @@ def test_notice_in_text_json_html():
 
 
 def test_no_detector_marketing_words_in_package():
-    import pathlib
     base = pathlib.Path(natural.__file__).parent
     for f in base.glob("*.py"):
         low = f.read_text(encoding="utf-8").lower()
         for bad in ("humanizer", "undetectable", "detector score", "bypass detect", "evade detection"):
             assert bad not in low, (f.name, bad)
-
-
-# --- CLI / docx ------------------------------------------------------------------------------------------------------------
-def test_cli_natural_text(tmp_path, capsys):
-    p = tmp_path / "s.txt"
-    p.write_text(sample.natural_lines(), encoding="utf-8")
-    cli.main(["natural", str(p)])
-    out = capsys.readouterr().out
-    assert "not built to evade" in out and "R101" in out and "Rhythm and readability" in out
-
-
-def test_cli_natural_json(tmp_path, capsys):
-    p = tmp_path / "s.txt"
-    p.write_text(sample.natural_lines(), encoding="utf-8")
-    cli.main(["natural", str(p), "--json"])
-    d = json.loads(capsys.readouterr().out)
-    assert d["summary"]["natural"] >= 20 and "not built to evade" in d["notice"]
-    nat = [f for f in d["findings"] if f["code"].startswith("R")]
-    assert nat and all(f["question"] or f["alternatives"] for f in nat)
-
-
-def test_cli_natural_skip(tmp_path, capsys):
-    p = tmp_path / "s.txt"
-    p.write_text(sample.natural_lines(), encoding="utf-8")
-    cli.main(["natural", str(p), "--json", "--skip", "R104,R301"])
-    d = json.loads(capsys.readouterr().out)
-    assert not any(f["code"] in ("R104", "R301") for f in d["findings"])
-
-
-def test_cli_rhythm(tmp_path, capsys):
-    p = tmp_path / "s.txt"
-    p.write_text(sample.natural_lines(), encoding="utf-8")
-    cli.main(["rhythm", str(p), "--json"])
-    d = json.loads(capsys.readouterr().out)
-    assert d["sentences"] > 20
-
-
-def test_cli_natural_html(tmp_path, capsys):
-    p = tmp_path / "s.txt"
-    p.write_text(sample.natural_lines(), encoding="utf-8")
-    o = tmp_path / "r.html"
-    cli.main(["natural", str(p), "--html", str(o)])
-    h = o.read_text(encoding="utf-8")
-    assert 'class="nat"' in h and "not built to evade" in h and "<script src" not in h and "http" not in re.sub(r"https?://[^\"' ]*example", "", h).replace("http-equiv", "")
-
-
-def test_text_input_is_not_modified_by_natural(tmp_path):
-    p = tmp_path / "s.txt"
-    p.write_text(sample.natural_lines(), encoding="utf-8")
-    before = p.read_bytes()
-    cli.main(["natural", str(p)])
-    assert p.read_bytes() == before
-
-
-docx_lib = pytest.importorskip("docx")
-
-
-def test_docx_natural_fix_adds_tracked_changes_and_comments(tmp_path):
-    src = tmp_path / "s.docx"
-    sample.natural_thesis(str(src))
-    out = tmp_path / "o.docx"
-    cli.main(["natural", str(src), "--fix", "-o", str(out)])
-    with zipfile.ZipFile(out) as z:
-        doc = z.read("word/document.xml").decode("utf-8")
-        com = z.read("word/comments.xml").decode("utf-8")
-        ct = z.read("[Content_Types].xml").decode("utf-8")
-        rels = z.read("word/_rels/document.xml.rels").decode("utf-8")
-    assert "<w:del " in doc and "<w:ins " in doc or "<w:del " in doc
-    assert com.count("<w:comment ") >= 10 and "commentRangeStart" in doc and "commentReference" in doc
-    assert "comments+xml" in ct and "comments.xml" in rels
-    ids = re.findall(r'<w:commentRangeStart w:id="(\d+)"', doc)
-    assert sorted(ids) == sorted(re.findall(r'<w:comment w:id="(\d+)"', com))
-    d = docx_lib.Document(str(out))
-    assert len(d.paragraphs) == len(docx_lib.Document(str(src)).paragraphs)
-
-
-def test_docx_reject_all_restores_original_text(tmp_path):
-    src = tmp_path / "s.docx"
-    sample.natural_thesis(str(src))
-    out = tmp_path / "o.docx"
-    cli.main(["natural", str(src), "--fix", "--mode", "all", "--with-register", "-o", str(out)])
-    def txt(path, rej):
-        with zipfile.ZipFile(path) as z:
-            xml = z.read("word/document.xml").decode("utf-8")
-        if rej:
-            xml = re.sub(r"<w:ins\b.*?</w:ins>", "", xml, flags=re.S)
-            return "".join(re.findall(r"<w:(?:t|delText)[^>]*>([^<]*)</w:(?:t|delText)>", xml))
-        return "".join(re.findall(r"<w:t[^>]*>([^<]*)</w:t>", xml))
-    assert txt(out, True) == txt(src, False)
-
-
-def test_docx_input_untouched_and_no_comments_flag(tmp_path):
-    src = tmp_path / "s.docx"
-    sample.natural_thesis(str(src))
-    before = src.read_bytes()
-    out = tmp_path / "o.docx"
-    cli.main(["natural", str(src), "--fix", "--no-comments", "-o", str(out)])
-    assert src.read_bytes() == before
-    with zipfile.ZipFile(out) as z:
-        assert "word/comments.xml" not in z.namelist()
-
-
-def test_docx_existing_comments_part_is_extended(tmp_path):
-    src = tmp_path / "s.docx"
-    sample.natural_thesis(str(src))
-    # inject an existing comments part
-    mid = tmp_path / "m.docx"
-    with zipfile.ZipFile(src) as zi, zipfile.ZipFile(mid, "w") as zo:
-        for it in zi.infolist():
-            zo.writestr(it, zi.read(it.filename))
-        zo.writestr("word/comments.xml", '<?xml version="1.0" encoding="UTF-8"?><w:comments xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:comment w:id="1" w:author="x" w:date="2020-01-01T00:00:00Z"><w:p><w:r><w:t>old</w:t></w:r></w:p></w:comment></w:comments>')
-    out = tmp_path / "o.docx"
-    cli.main(["natural", str(mid), "--fix", "-o", str(out)])
-    with zipfile.ZipFile(out) as z:
-        com = z.read("word/comments.xml").decode("utf-8")
-    assert ">old<" in com and com.count("<w:comment ") > 5
-    docx_lib.Document(str(out))
