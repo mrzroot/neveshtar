@@ -1,19 +1,19 @@
+"""The spoken → written rewrite engine: safe/balanced/all modes, quoting, offsets and idempotence."""
 import pytest
 
 from neveshtar import engine, lexicon, sample
 
 
 def F(s, mode="safe"):
+    """Formalise *s* in the given mode ("safe", "balanced" or "all")."""
     return engine.formalize(s, mode)
 
 
 @pytest.mark.parametrize("src,dst", [
     ("می‌خوام بررسی کنم", "می‌خواهم بررسی کنم"),
-    ("اون نمی‌تونه بیاد", None),                      # handled below as not-crashing; exact forms are tested elsewhere
     ("داره میاد", "دارد می‌آید"),
     ("این روش مهمه", "این روش مهم است"),
     ("خیلی مهم", "بسیار مهم"),
-    ("اینو رو تحلیل کردم", None),
     ("پرسشنامه رو پر کردند", "پرسشنامه را پر کردند"),
     ("می شه دید", "می‌شود دید"),
     ("نمیشه گفت", "نمی‌شود گفت"),
@@ -21,9 +21,13 @@ def F(s, mode="safe"):
     ("یه روش", "یک روش"),
 ])
 def test_safe_rewrites(src, dst):
-    out = F(src)
-    if dst is not None:
-        assert out == dst
+    assert F(src) == dst
+
+
+@pytest.mark.parametrize("src", ["اون نمی‌تونه بیاد", "اینو رو تحلیل کردم"])
+def test_ambiguous_colloquial_forms_do_not_crash(src):
+    """Forms whose exact rewrite depends on mode: only require that formalising returns text (exact forms: below)."""
+    assert isinstance(F(src), str)
 
 
 def test_arabic_letters_are_matched():
@@ -50,7 +54,7 @@ def test_guillemet_quote_with_text_outside():
 
 
 def test_idempotent():
-    for kind, t in sample.DRAFT:
+    for _kind, t in sample.DRAFT:
         for mode in ("safe", "balanced", "all"):
             once = F(t, mode)
             assert F(once, mode) == once
@@ -73,7 +77,7 @@ def test_confidence_tiers_present_and_ambiguous_forms_not_high():
 
 
 def test_no_overlapping_changes_and_offsets_valid():
-    for kind, t in sample.DRAFT:
+    for _kind, t in sample.DRAFT:
         ch = engine.find_changes(t)
         prev = 0
         for c in sorted(ch, key=lambda c: c.start):
