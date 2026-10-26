@@ -126,9 +126,6 @@ def cmd_fix(a) -> int:
                     notes.setdefault(f_.para, []).append(f"{f_.code} «{f_.text.strip()[:60]}»: {f_.message}" + (f" → {f_.suggestion}" if f_.suggestion else "") + f" ? {f_.ask}")
         applied, skipped = dx.write(a.file, dst, plan, tracked=not a.clean, author=a.author, date=a.date, comments=notes)
         n_ok = len(applied)
-        applied_ids = {id(c) for c in applied}
-        for f_ in res.findings:     # mark in the report what was really written
-            pass
         mode_txt = "clean (no tracked changes)" if a.clean else "tracked changes: accept / reject each one in Word (Review → Tracking)"
     else:
         by_line = {int(p.where.split()[1]) - 1: p for p in paras}
@@ -149,7 +146,7 @@ def cmd_fix(a) -> int:
     left = sum(1 for f_ in after.findings if f_.kind == "rewrite" and f_.conf in ("high",))
     tail += f"\nre-check of the copy: {left} high-confidence spoken form(s) left."
     _report(a.file, res, a, tail)
-    return 0 if left == 0 or opt.mode != "safe" else 0
+    return 0
 
 
 def cmd_natural(a) -> int:
@@ -188,7 +185,7 @@ def cmd_rules(a) -> int:
         from . import lexicon
         from .style import STYLE
         print(json.dumps({"rewrite_categories": {k: {"name": v[0], "name_fa": v[1], "why": v[2], "forms": sum(1 for r in lexicon.rules() if r.cat == k)} for k, v in lexicon.CATS.items()},
-                          "style": {k: {"severity": v[0], "why": v[1]} for k, v in __import__("neveshtar.style", fromlist=["STYLE"]).STYLE.items()}}, ensure_ascii=False, indent=2))
+                          "style": {k: {"severity": v[0], "why": v[1]} for k, v in STYLE.items()}}, ensure_ascii=False, indent=2))
     else:
         sys.stdout.write(render.rules_text())
     return 0
