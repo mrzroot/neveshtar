@@ -4,6 +4,13 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+Nothing user-facing yet, so no release was cut for these.
+
+- Docs: README contents anchors fixed (emoji selector, ZWNJ), RTL navigation line, Persian spans isolated in the English text.
+- Internal: dead code removed from the CLI and the naturalness rules (no-op replaces, unused variables, a conditional with identical branches); CLI and .docx tests moved to their own file so a missing python-docx no longer skips the rule tests. No change in rewrites, findings or output.
+
 ## [0.2.0] - 2026-10-25
 
 ### Added
