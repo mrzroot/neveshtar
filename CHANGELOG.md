@@ -6,6 +6,8 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+- Docs: explain which Persian Word tool to use for each type of issue and how to keep the original file intact.
+
 Nothing user-facing yet, so no release was cut for these.
 
 - Docs: README contents anchors fixed (emoji selector, ZWNJ), RTL navigation line, Persian spans isolated in the English text.

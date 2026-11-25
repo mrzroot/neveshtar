@@ -21,6 +21,17 @@ A first draft is typed the way we speak (⁧`داره`⁩, ⁧`میشه`⁩, ⁧
 
 `neveshtar` keeps two things visible. **Register:** some spoken forms have exactly one written form (⁧«دارد»⁩, ⁧«می‌شود»⁩) and are safe to fix mechanically; others depend on context and stay *suggestions*. **Naturalness:** a filler opener can be trimmed safely, but whether ⁧«نقش مهمی دارد»⁩ means anything is something only you can answer, so the tool **asks a question instead of inventing a claim**. Every finding has a location, a reason in two languages, a confidence tier and, where it can, a rewrite. `safe` mode (the default) applies only the unambiguous ones, and the result is a Word tracked change you accept or reject one by one.
 
+## Choose the right tool for your thesis
+
+Keep the original Word file. Use each tool for the issue it is designed to find:
+
+- [payanlint](https://github.com/mrzroot/payanlint): Detect typing and Word formatting issues; start with a report and fix safe text issues only in a copy.
+- [arjaa](https://github.com/mrzroot/arjaa): Check links from in-text mentions to captions and bibliography entries; reports only.
+- [vazhgun](https://github.com/mrzroot/vazhgun): Find bidirectional display issues around numbers, punctuation, paragraphs and tables; optional fixes write a copy.
+- **neveshtar**: Flag spoken or template-like Persian phrasing; suggested edits can be reviewed as tracked changes.
+
+One possible order: check references and text direction first, then review the writing and formatting. Review any fixed copies in Word before replacing the original.
+
 ## 📦 Install
 
 Python 3.9+, standard library only, no network. Tested on Linux only.
